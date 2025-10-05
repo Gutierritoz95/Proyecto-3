@@ -191,11 +191,13 @@ body {
     float: left;
     width: 370px;
     margin-right: 70px;
+    margin-top: 50px;
 }
 
 .egreso {
     float: left;
     width: 370px;
+    margin-top: 50px;
 }
 
 h2 {

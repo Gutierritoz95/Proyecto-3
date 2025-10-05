@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body onload="cargarApp()">
     <header>
         <div class="cabecero">
             <div class="Presupuesto">
@@ -23,7 +23,7 @@
                     Presupuesto Disponible
                 </div>
 
-                <div class="presupuesto_valor">
+                <div class="presupuesto_valor" id="presupuesto">
                     + 2,000.00
                 </div>
 
@@ -32,7 +32,7 @@
                         Ingresos
                     </div>
                     <div class="derecha">
-                        <div class="presupuesto_ingreso--valor">
+                        <div class="presupuesto_ingreso--valor" id="ingresos">
                             + 4,000.00
                         </div>
                         <div class="presupuesto_ingreso--porcentaje">
@@ -46,10 +46,10 @@
                         Egresos
                     </div>
                     <div class="derecha">
-                        <div class="presupuesto_egreso--valor">
+                        <div class="presupuesto_egreso--valor" id="egresos">
                             - 1,900.00
                         </div>
-                        <div class="presupuesto_egreso--porcentaje">
+                        <div class="presupuesto_egreso--porcentaje" id="porcentaje">
                             45%
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <input type="text" class="agregar_descripcion" placeholder="Agregar Descripcion"
                             id="Descripcion">
                         <input type="number" class="agregar_valor" placeholder="Valor" step="any">
-                        <button class="agregar_btn"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
+                        <button class="agregar_btn" onclick="agregarDato(onsubmit)"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
                     </div>
                 </div>
             </form>
@@ -117,12 +117,10 @@
                     </div>
                 </div>
                 <div class="elemento limpiarEstilos">
-                    <div class="elemento_descripcion">
-                        Ropa
-                    </div>
+                    <div class="elemento_descripcion">Ropa</div>
                     <div class="derecha limpiarEstilos">
-                        <div class="elemento_valor">
-                            - 400.00
+                        <div class="elemento_valor">- 400.00
+
                         </div>
                         <div class="elemento_porcentaje">
                             9%
@@ -138,6 +136,7 @@
         </div>
 
         <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+        
 </body>
 
 

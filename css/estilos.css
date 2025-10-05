@@ -145,6 +145,7 @@ body {
 .agregar_valor {
     border: 1px solid #e7e7e7;
     background-color: #fff;
+    color:#333
     color: inherit;
     font-family: inherit;
     font-size: 14px;

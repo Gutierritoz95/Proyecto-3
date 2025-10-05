@@ -1,20 +1,18 @@
 
 
 const ingresos = [
-    new Ingreso('Salario', 20000),
-    new Ingreso('Venta auto', 50000)
+   
 ];
 
 const egresos = [
-    new Egreso('Renta', 4000),
-    new Egreso('Ropa', 800)
+    
 ];
 
 
 
 const cargarCabecero = (totalIngresos, totalEgresos) => {
-    presupuesto = totalIngresos - totalEgresos;
-    porcentajeegreso = totalEgresos / totalIngresos;
+    const presupuesto = totalIngresos - totalEgresos;
+    const porcentajeegreso = totalIngresos > 0 ? totalEgresos / totalIngresos : 0;
 
     document.getElementById('presupuesto').innerHTML = formatoMoneda(presupuesto);
     document.getElementById('porcentaje').innerHTML = formatoPorcentaje(porcentajeegreso);
@@ -23,9 +21,8 @@ const cargarCabecero = (totalIngresos, totalEgresos) => {
 }
 
 
-
 const totalIngresos = () => {
-    let totalIngreso = 10;
+    let totalIngreso = 0;
     for (let ingreso of ingresos) {
         totalIngreso += ingreso.valor;
     }
@@ -33,7 +30,7 @@ const totalIngresos = () => {
 }
 
 const totalEgresos = () => {
-    let totalEgreso = 10;
+    let totalEgreso = 0;
     for (let egreso of egresos) {
         totalEgreso += egreso.valor;
     }
@@ -81,17 +78,29 @@ const crearIngresoHTML = (ingreso) => {
 const cargarEgresos = () => {
     let egresosHTML = '';
     for (let egreso of egresos) {
-        egresosHTML += crearegresoHTML(ingreso);
+        egresosHTML += crearEgresoHTML(egreso);
     }
-    document.getElementById('lista_egreesos').innerHTML = egresosHTML;
+    document.getElementById('lista_egresos').innerHTML = egresosHTML;
+}
+
+const eliminarIngreso = (id) => {
+    const indiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id);
+    if (indiceEliminar !== -1) {
+        ingresos.splice(indiceEliminar, 1);
+        cargarCabecero(totalIngresos(), totalEgresos());
+        cargarIngresos();
+        cargarEgresos();
+    }
 }
 
 const crearEgresoHTML = (egreso) => {
+    const porcentaje = totalIngresos() > 0 ? egreso.valor / totalIngresos() : 0;
     let egresoHTML = `
         <div class="elemento limpiarEstilos">
             <div class="elemento_descripcion">${egreso.descripcion}</div>
             <div class="derecha limpiarEstilos">
                 <div class="elemento_valor">${formatoMoneda(egreso.valor)}</div>
+                <div class="elemento_porcentaje">${formatoPorcentaje(porcentaje)}</div>
                 <div class="elemento_eliminar">
                     <button class="elemento_eliminar--btn" onclick="eliminarEgreso(${egreso.id})">
                         <ion-icon name="close-circle-outline"></ion-icon>
@@ -113,22 +122,22 @@ const eliminarEgreso = (id) => {
 }
 
 const agregarDato = () => {
-
-    const forma = document.getElementById('forma');
-    const tipo = forma.tipo.value;
-    const descripcion = forma.Descripcion.value; 
-    const valor = parseFloat(forma.valor.value);
+    const tipo = document.getElementById('tipo').value;
+    const descripcion = document.getElementById('Descripcion').value;
+    const valor = parseFloat(document.querySelector('.agregar_valor').value);
 
     if (descripcion !== '' && !isNaN(valor) && valor > 0) {
-      
         if (tipo === 'ingreso') {
-        
             ingresos.push(new Ingreso(descripcion, valor));
             cargarCabecero(totalIngresos(), totalEgresos());
             cargarIngresos();
+            cargarEgresos();
+        } else if (tipo === 'egreso') {
+            egresos.push(new Egreso(descripcion, valor));
+            cargarCabecero(totalIngresos(), totalEgresos());
+            cargarEgresos();
         }
-    
-        forma.reset();
+        document.getElementById('forma').reset();
     } else {
         alert('Por favor, introduce una descripción válida y un valor positivo.');
     }

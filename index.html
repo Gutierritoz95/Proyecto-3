@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <form id="forma">
+            <form id="forma" onsubmit="return false;">
                 <div class="agregar">
                     <div class="agregar_contenedor">
                         <select class="agregar_tipo" id="tipo">
@@ -65,7 +65,7 @@
                         <input type="text" class="agregar_descripcion" placeholder="Agregar Descripcion"
                             id="Descripcion">
                         <input type="number" class="agregar_valor" placeholder="Valor" step="any">
-                        <button class="agregar_btn" onclick="agregarDato(onsubmit)"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
+                        <button class="agregar_btn" type="button" onclick="agregarDato(onsubmit)"><ion-icon name="checkmark-circle-outline"></ion-icon></button>
                     </div>
                 </div>
             </form>
@@ -93,7 +93,7 @@
                     <div class="derecha limpiarEstilos">
                         <div class="elemento_valor">+ 1,500.00</div>
                         <div class="elemento_eliminar">
-                            <button class="elemento_eliminar--btn">
+                            <button class="elemento_eliminar--btn" >
                                 <ion-icon name="close-circle-outline"></ion-icon>
                             </button>
                         </div>
@@ -103,7 +103,7 @@
         </div>
         <div class="egreso derecha">
             <h2 class="egreso_titulo">Egresos</h2>
-            <div class="listra-egresos">
+            <div class="listra-egresos" id="lista_egresos">
                 <div class="elemento limpiarEstilos">
                     <div class="elemento_descripcion">Renta departamento</div>
                     <div class="derecha limpiarEstilos">
